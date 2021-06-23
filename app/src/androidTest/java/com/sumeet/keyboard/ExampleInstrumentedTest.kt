@@ -1,5 +1,9 @@
 package com.sumeet.keyboard
 
+import androidx.test.espresso.Espresso
+import androidx.test.espresso.action.ViewActions
+import androidx.test.espresso.assertion.ViewAssertions
+import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
 
@@ -21,4 +25,17 @@ class ExampleInstrumentedTest {
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         assertEquals("com.sumeet.keyboard", appContext.packageName)
     }
+
+    @Test
+    fun uiTest() {
+        // Context of the app under test.
+        Espresso.onView(ViewMatchers.withId(R.id.button1)).perform(ViewActions.click())
+        Espresso.onView(ViewMatchers.withId(R.id.button7)).perform(ViewActions.click())
+        Espresso.onView(ViewMatchers.withId(R.id.button2)).perform(ViewActions.click())
+        Espresso.onView(ViewMatchers.withId(R.id.button8)).perform(ViewActions.click())
+        Espresso.onView(ViewMatchers.withId(R.id.tv_currency)).check(
+            ViewAssertions.matches(
+                ViewMatchers.withText("1728.00")))
+    }
+
 }
